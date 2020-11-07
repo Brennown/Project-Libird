@@ -1,6 +1,6 @@
 using System;
 
-namespace Libird.Models
+namespace Libird.Models.ViewModels
 {
     public class ErrorViewModel
     {
