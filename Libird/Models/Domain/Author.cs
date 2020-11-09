@@ -11,6 +11,5 @@ namespace Libird.Models.Domain
         public string Name { get; set; }
         public string LastName { get; set; }
         public ICollection<Book> Books { get; set; }
-
     }
 }

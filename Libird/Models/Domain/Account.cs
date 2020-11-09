@@ -7,7 +7,7 @@ namespace Libird.Models.Domain
 {
     public class Account
     {
-        public int AcoountId { get; set; }
+        public int AccountId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public int UserId { get; set; }
