@@ -12,5 +12,6 @@ namespace Libird.Models.Domain
         public string Password { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
+        public ICollection<BookAccount> BookAccounts { get; set; }
     }
 }

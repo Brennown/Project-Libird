@@ -8,8 +8,7 @@ namespace Libird.Models.Domain
 {
     public class BookAccount
     {
-        public int BookAccountId { get; set; }
-
+       
         public int AccountId { get; set; }
         public Account Account { get; set; }
 

@@ -16,5 +16,6 @@ namespace Libird.Models.Domain
         public string Genre { get; set; }
         public int AuthorId { get; set; }
         public Author Author { get; set; }
+        public ICollection<BookAccount> BookAccounts { get; set; }
     }
 }
