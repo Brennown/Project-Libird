@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Libird.Data.Context;
+using Libird.Data.Services;
+using Libird.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +31,8 @@ namespace Libird
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
+
+            services.AddScoped<ICreateNewAccount, CreateNewAccountService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
