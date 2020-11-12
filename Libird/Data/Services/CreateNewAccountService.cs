@@ -27,7 +27,7 @@ namespace Libird.Data.Services
             _context.Accounts.Add(account);
             await _context.SaveChangesAsync();
 
-            return "Accounrt Created with success";
+            return "Account Created with success";
         }
     }
 }
