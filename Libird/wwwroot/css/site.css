@@ -31,3 +31,17 @@ main{
 #banner h1{
     color: white;
 }
+
+.link-card:hover{
+    text-decoration: none;
+}
+
+.logo-card{
+    width: 70px;
+    height: 70px;
+    padding: 10px;
+}
+
+h3 {
+    color: #B1B1B1;
+}
