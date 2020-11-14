@@ -34,6 +34,7 @@ namespace Libird
 
             services.AddScoped<ICreateNewAccount, CreateNewAccountService>();
             services.AddScoped<ILoginAccount, LoginAccountService>();
+            services.AddScoped<IUserSearch, UserSearchService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
