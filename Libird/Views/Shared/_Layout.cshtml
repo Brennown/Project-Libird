@@ -11,29 +11,44 @@
 </head>
 <body>
     <header>
-        <nav class="navbar-expand-sm bg-white border-bottom box-shadow mb-3">
-            <a class="navbar-brand logo" asp-controller="Home" asp-action="Index" title="Home"><img src="~/img/logo.png" /></a>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                        <a class="icons" asp-controller="Home" asp-action="Index" title="Home"><i class="fas fa-home"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="icons" asp-controller="" asp-action="" title="Library"><i class="fas fa-bookmark"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="icons" asp-controller="" asp-action="" title="Add New Book"><i class="fas fa-plus-square"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="icons" asp-controller="" asp-action="" title="Collection"><i class="fas fa-book"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="icons" asp-controller="" asp-action="" title="Profile"><i class="fas fa-user"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="icons" asp-controller="" asp-action="" title="Favorite"><i class="fas fa-heart"></i></a>
-                    </li>
-                </ul>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/logo.png" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1 justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link icons-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link icons-link" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fas fa-bookmark"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link icons-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-plus-square"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link icons-link" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fas fa-book"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link icons-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-user"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link icons-link" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fas fa-heart"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      @ViewBag.Name
+                      @ViewBag.LastName
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <a class="dropdown-item" asp-action="SingIn" asp-controller="Input" asp-cotype="button">Exit</a>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
