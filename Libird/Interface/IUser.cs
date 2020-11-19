@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace Libird.Interface
 {
-    public interface ILoginAccount
+    public interface IUser
     {
-        Task<bool> LoginAccountAsync(Account account);
+        Task<User> SearchUserByAccount(Account account); 
     }
 }

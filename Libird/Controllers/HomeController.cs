@@ -1,22 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Libird.Models.ViewModels;
 using Libird.Models.Domain;
+using Libird.Interface;
 
 namespace Libird.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index(User user)
+        private readonly IAccount _accountService; 
+        private Account _userAccount;
+
+        public HomeController(IAccount accountService)
         {
-            ViewBag.Name = user.Name;
-            ViewBag.LastName = user.LastName;
-            return View();
+            _accountService = accountService;
+        }
+
+        public async Task<IActionResult> Index(Account account, int? id)
+        {
+           
+            if (account.UserName != null)
+            {
+                _userAccount = await _accountService.SearchAccountByUserName(account.UserName);
+            }
+            else
+            {
+                _userAccount = await _accountService.SearchAccountById(id.Value);
+            }
+          
+            return View(_userAccount);
         }
     }
 }

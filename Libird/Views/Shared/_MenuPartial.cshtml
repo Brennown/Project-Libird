@@ -1,0 +1,43 @@
+﻿@model Libird.Models.Domain.Account
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="@Model.AccountId"><img src="~/img/logo.png" /></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1 justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link icons-link" title="Home" asp-controller="Home" asp-action="Index" asp-route-id="@Model.AccountId"><i class="fas fa-home"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link icons-link" title="Library" asp-area="" asp-controller="Home" asp-action="" asp-route-id="@Model.AccountId"><i class="fas fa-bookmark"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link icons-link" title="Add New Book" asp-area="" asp-controller="Home" asp-action="" asp-route-id="@Model.AccountId"><i class="fas fa-plus-square"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link icons-link" title="Collection" asp-area="" asp-controller="Home" asp-action="" asp-route-id="@Model.AccountId"><i class="fas fa-book"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link icons-link" title="Profile" asp-area="" asp-controller="Home" asp-action="" asp-route-id="@Model.AccountId"><i class="fas fa-user"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link icons-link" title="Favorite"  asp-area="" asp-controller="Home" asp-action="" asp-route-id="@Model.AccountId"><i class="fas fa-heart"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @Model.User.Name
+                    @Model.User.LastName
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <a class="dropdown-item" asp-action="SingIn" asp-controller="Input" asp-cotype="button">Exit</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

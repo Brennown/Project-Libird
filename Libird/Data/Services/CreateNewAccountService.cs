@@ -3,7 +3,6 @@ using Libird.Data.Generic;
 using Libird.Interface;
 using Libird.Models.Domain;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace Libird.Data.Services

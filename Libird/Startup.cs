@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Libird.Data.Context;
 using Libird.Data.Services;
 using Libird.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,7 +29,8 @@ namespace Libird
 
             services.AddScoped<ICreateNewAccount, CreateNewAccountService>();
             services.AddScoped<ILoginAccount, LoginAccountService>();
-            services.AddScoped<IUserSearch, UserSearchService>();
+            services.AddScoped<IUser, UserSearchService>();
+            services.AddScoped<IAccount,AccountService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
