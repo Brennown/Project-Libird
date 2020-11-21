@@ -22,16 +22,15 @@ namespace Libird.Data.Context
             {
                 p.ToTable("Accounts");
                 p.HasKey(p => p.AccountId);
-                p.Property(p => p.AccountId).IsRequired().ValueGeneratedOnAdd();
                 p.Property(p => p.UserName).HasColumnType("VARCHAR(30)").IsRequired();
                 p.Property(p => p.Password).HasColumnType("VARCHAR(30)").IsRequired();
+                p.Property(p => p.UserId).HasColumnName("Fk_UserId").IsRequired();
             });
 
             modelBuilder.Entity<Author>( p =>
             {
                 p.ToTable("Authors");
                 p.HasKey(p => p.AuthorId);
-                p.Property(p => p.AuthorId).IsRequired().ValueGeneratedOnAdd();
                 p.Property(p => p.Name).HasColumnType("VARCHAR(30)").IsRequired();
                 p.Property(p => p.LastName).HasColumnType("VARCHAR(30)").IsRequired();
             });
@@ -40,13 +39,13 @@ namespace Libird.Data.Context
             {
                 p.ToTable("Books");
                 p.HasKey(p => p.BookId);
-                p.Property(p => p.BookId).IsRequired().ValueGeneratedOnAdd();
-                p.Property(p => p.Title).HasColumnType("VARCHAR(30)").IsRequired();
-                p.Property(p => p.SubTitle).HasColumnType("VARCHAR(25)").IsRequired();
+                p.Property(p => p.Title).HasColumnType("VARCHAR(50)").IsRequired();
+                p.Property(p => p.SubTitle).HasColumnType("VARCHAR(50)").IsRequired();
                 p.Property(p => p.NumberPage).HasColumnType("CHAR(4)").IsRequired();
                 p.Property(p => p.NumberEdition).HasColumnType("CHAR(3)").IsRequired();
                 p.Property(p => p.Isbn).HasColumnType("CHAR(13)").IsRequired();
                 p.Property(p => p.Genre).HasColumnType("VARCHAR(20)").IsRequired();
+                p.Property(p => p.AuthorId).HasColumnName("Fk_AuthorId").IsRequired();
 
                 p.HasOne(p => p.Author)
                 .WithMany(p => p.Books)
@@ -60,7 +59,6 @@ namespace Libird.Data.Context
             {
                 p.ToTable("Users");
                 p.HasKey(p => p.UserId);
-                p.Property(p => p.UserId).IsRequired().ValueGeneratedOnAdd();
                 p.Property(p => p.Name).HasColumnType("VARCHAR(30)").IsRequired();
                 p.Property(p => p.LastName).HasColumnType("VARCHAR(30)").IsRequired();
                 p.Property(p => p.Email).HasColumnType("VARCHAR(30)").IsRequired();
@@ -76,7 +74,9 @@ namespace Libird.Data.Context
             modelBuilder.Entity<BookAccount>( p => 
             {
                 p.ToTable("Book_Account");
-                p.HasKey(p => new { p.AccountId, p.BookId });
+                p.HasKey(p => p.BookAccountId);
+                p.Property(p => p.AccountId).HasColumnName("Fk_AccountId").IsRequired();
+                p.Property(p => p.BookId).HasColumnName("Fk_BookId").IsRequired();
             });
 
             modelBuilder.Entity<BookAccount>( p => 

@@ -31,6 +31,7 @@ namespace Libird
             services.AddScoped<ILoginAccount, LoginAccountService>();
             services.AddScoped<IUser, UserSearchService>();
             services.AddScoped<IAccount,AccountService>();
+            services.AddScoped<IBook,BookService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
