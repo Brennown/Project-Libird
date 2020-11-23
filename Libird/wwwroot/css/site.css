@@ -1,24 +1,25 @@
-﻿.icons-link{
+﻿.icons-link {
     font-size: 25px;
     color: red;
     text-align: center;
     letter-spacing: 50px;
 }
 
-.icons-link:hover {
-     color: #0E8EF1;
- }
+    .icons-link:hover {
+        color: #0E8EF1;
+    }
 
-.logo{
-    float:left;
+.logo {
+    float: left;
     margin: 5px 0px 0px 80px;
 }
-ul{
-    padding:10px;
+
+ul {
+    padding: 10px;
 }
 
-main{
-    margin:0px;
+main {
+    margin: 0px;
 }
 
 #banner {
@@ -26,15 +27,16 @@ main{
     background: #0E8EF1;
     padding: 80px;
 }
-#banner h1{
-    color: white;
-}
 
-.link-card:hover{
+    #banner h1 {
+        color: white;
+    }
+
+.link-card:hover {
     text-decoration: none;
 }
 
-.logo-card{
+.logo-card {
     width: 70px;
     height: 70px;
     padding: 10px;
@@ -43,3 +45,21 @@ main{
 h3 {
     color: #B1B1B1;
 }
+
+.link-edit {
+    color: #24BFA5;
+    text-align: center;
+    text-decoration: none;
+}
+    .link-edit:hover {
+        color: #125F52;
+    }
+
+.link-delete {
+    color: #DB405A;
+    text-align: center;
+    text-decoration: none;
+}
+    .link-delete:hover {
+        color: #49151E;
+    }

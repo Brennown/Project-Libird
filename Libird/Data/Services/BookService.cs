@@ -2,7 +2,10 @@
 using Libird.Data.Generic;
 using Libird.Interface;
 using Libird.Models.Domain;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Libird.Data.Services
 {
@@ -31,6 +34,17 @@ namespace Libird.Data.Services
             var bookAccount = new BookAccount { AccountId = accountId, BookId = bookId };
             _context.BookAccounts.Add(bookAccount);
             _context.SaveChanges();
+        }
+
+        public async Task<List<Book>> GetAllBookByAccountId(int accountId)
+        {
+            var result = from obj in _context.Books select obj;
+
+            return await result
+                .Include(x => x.Author)
+                .Include(x => x.BookAccounts)
+                .Where(x => x.BookAccounts.Any(x => x.AccountId == accountId))
+                .ToListAsync();
         }
     }
 }

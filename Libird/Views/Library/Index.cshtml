@@ -1,0 +1,82 @@
+﻿@model Libird.Models.ViewModels.Library
+<partial name="_MenuPartial" model="Model.Account" />
+<main class="container">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Book.BookId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Book.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Book.SubTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Book.NumberPage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Book.NumberEdition)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Book.Genre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Book.Author.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Book.Author.LastName)
+                </th>
+                <th>
+                    <span>Edit</span>
+                </th>
+                <th>
+                    <span>Delete</span>
+                </th>
+            </tr>
+        </thead>
+        <tfoot></tfoot>
+        <tbody>
+            @foreach (var item in Model.Books)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.BookId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.SubTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.NumberPage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.NumberEdition)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Genre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Author.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Author.LastName)
+                    </td>
+                    <td>
+                        <a class="link-edit" asp-action="Edit" asp-route-id="@item.BookId">
+                            <span><i class="fas fa-edit"></i></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="link-delete"asp-action="Delete" asp-route-is="@item.BookId">
+                            <span><i class="fas fa-trash-alt"></i></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>
