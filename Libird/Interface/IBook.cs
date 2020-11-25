@@ -8,5 +8,8 @@ namespace Libird.Interface
     {
         Task<List<Book>> GetAllBookByAccountId(int accountId);
         Task AddNewBook(int accountId, Book book, Author author);
+
+        Task<int> GetBookIdByIsbn(string isbn);
+        Task AddBook(int authorId, Book book);
     }
 }
