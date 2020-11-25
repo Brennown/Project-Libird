@@ -45,6 +45,9 @@ namespace Libird.Data.Context
                 p.Property(p => p.NumberEdition).HasColumnType("CHAR(3)").IsRequired();
                 p.Property(p => p.Isbn).HasColumnType("CHAR(13)").IsRequired();
                 p.Property(p => p.Genre).HasColumnType("VARCHAR(20)").IsRequired();
+                p.Property(p => p.Type).HasConversion<string>().IsRequired();
+                p.Property(p => p.Read).HasColumnType("BIT").IsRequired();
+                p.Property(p => p.Borrowed).HasColumnType("BIT").IsRequired();
                 p.Property(p => p.AuthorId).HasColumnName("Fk_AuthorId").IsRequired();
 
                 p.HasOne(p => p.Author)

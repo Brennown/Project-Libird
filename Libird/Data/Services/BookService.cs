@@ -15,25 +15,25 @@ namespace Libird.Data.Services
         {
         }
 
-        public void AddNewBook(int accountId, Book book, Author author)
+        public async Task AddNewBook(int accountId, Book book, Author author)
         {
             _context.Authors.Add(author);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
-            var resultAuthor = _context.Authors.FirstOrDefault(x => x.Name == author.Name && x.LastName == author.LastName);
+            var resultAuthor = await _context.Authors.FirstOrDefaultAsync(x => x.Name == author.Name && x.LastName == author.LastName);
             var authorId = resultAuthor.AuthorId;
 
             book.AuthorId = authorId;
             _context.Books.Add(book);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
-            var resultBook = _context.Books.FirstOrDefault(x => x.Isbn == book.Isbn);
+            var resultBook = await _context.Books.FirstOrDefaultAsync(x => x.Isbn == book.Isbn);
             var bookId = resultBook.BookId;
 
 
             var bookAccount = new BookAccount { AccountId = accountId, BookId = bookId };
             _context.BookAccounts.Add(bookAccount);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<Book>> GetAllBookByAccountId(int accountId)

@@ -7,6 +7,6 @@ namespace Libird.Interface
     public interface IBook
     {
         Task<List<Book>> GetAllBookByAccountId(int accountId);
-        void AddNewBook(int accountId, Book book, Author author);
+        Task AddNewBook(int accountId, Book book, Author author);
     }
 }

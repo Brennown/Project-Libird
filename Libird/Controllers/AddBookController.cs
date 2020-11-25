@@ -25,9 +25,10 @@ namespace Libird.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public void AddNewBook(int accountId, Book book , Author author)
+        public async Task<IActionResult> AddNewBook(int accountId, Book book , Author author)
         {
-            _bookService.AddNewBook(accountId, book, author);
+            await _bookService.AddNewBook(accountId, book, author);
+            return RedirectToAction("Index", "Library", new { id = accountId });
         }
     }
 }
