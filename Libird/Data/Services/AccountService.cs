@@ -4,7 +4,7 @@ using Libird.Interface;
 using Libird.Models.Domain;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-
+using System.Linq;
 
 namespace Libird.Data.Services
 {
@@ -23,6 +23,12 @@ namespace Libird.Data.Services
         public async Task<Account> SearchAccountByUserName(string userName)
         {
             return await _context.Accounts.Include(x => x.User).FirstOrDefaultAsync(x => x.UserName == userName);
+        }
+
+        public async Task<int> SearchAccountIdByUserName(string userName)
+        {
+            var accountId = await _context.Accounts.FirstOrDefaultAsync(x => x.UserName == userName);
+            return accountId.AccountId;
         }
     }
 }

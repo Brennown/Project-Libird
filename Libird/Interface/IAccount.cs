@@ -7,5 +7,6 @@ namespace Libird.Interface
     {
         Task<Account> SearchAccountByUserName(string userName);
         Task<Account> SearchAccountById(int accountId);
+        Task<int> SearchAccountIdByUserName(string userName);
     }
 }

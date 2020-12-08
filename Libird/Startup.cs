@@ -32,6 +32,11 @@ namespace Libird
             services.AddScoped<IUser, UserSearchService>();
             services.AddScoped<IAccount,AccountService>();
             services.AddScoped<IBook,BookService>();
+
+            services.AddAuthentication("CookieAuth").AddCookie("CookieAuth", opt => 
+            {
+                opt.Cookie.Name = "LoginCookie";
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -50,13 +55,14 @@ namespace Libird
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Input}/{action=SingIn}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

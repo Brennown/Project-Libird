@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Libird.Interface;
 using Libird.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -18,14 +15,14 @@ namespace Libird.Controllers
             _bookService = bookService;
             _accountervice = accountService;
         }
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index()
         {
-            var account = await _accountervice.SearchAccountById(id.Value);
-            var listBook = await _bookService.GetAllBookByAccountId(id.Value);
+            var userName = User.Identity.Name;
+            var accountId = await _accountervice.SearchAccountIdByUserName(userName);
+            var listBook = await _bookService.GetAllBookByAccountId(accountId);
 
             var viewModel = new Library 
             { 
-                Account = account, 
                 Books = listBook
             };
 

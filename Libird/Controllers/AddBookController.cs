@@ -1,11 +1,13 @@
 ﻿using Libird.Interface;
 using Libird.Models.Domain;
 using Libird.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Libird.Controllers
 {
+    [Authorize]
     public class AddBookController : Controller
     {
         private readonly IAccount _accountService;
@@ -16,10 +18,11 @@ namespace Libird.Controllers
             _bookService = bookService;
         }
 
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index()
         {
-            var account = await _accountService.SearchAccountById(id.Value);
-            var viewModel = new AddNewBook { Account = account, AccountId = account.AccountId};
+            var userName = User.Identity.Name;
+            var accountId = await _accountService.SearchAccountIdByUserName(userName);
+            var viewModel = new AddNewBook {AccountId = accountId};
             return View(viewModel);
         }
 
@@ -28,7 +31,7 @@ namespace Libird.Controllers
         public async Task<IActionResult> AddNewBook(int accountId, Book book , Author author)
         {
             await _bookService.AddNewBook(accountId, book, author);
-            return RedirectToAction("Index", "Library", new { id = accountId });
+            return RedirectToAction("Index", "Library");
         }
     }
 }

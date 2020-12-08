@@ -1,6 +1,6 @@
 ﻿.icons-link {
     font-size: 25px;
-    color: red;
+    color: #808080;
     text-align: center;
     letter-spacing: 50px;
 }
@@ -63,3 +63,8 @@ h3 {
     .link-delete:hover {
         color: #49151E;
     }
+
+.login-link{
+    position:relative;
+    left: 390px;
+}

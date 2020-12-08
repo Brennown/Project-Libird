@@ -1,8 +1,7 @@
-﻿@model Libird.Models.Domain.Account
-<partial name="_MenuPartial" model="Model" />
-<main>
+﻿@if (User.Identity.IsAuthenticated)
+{
     <div id="banner">
-        <h1 class="display-4">Welcome, @Model.User.Name @Model.User.LastName</h1>
+        <h1 class="display-4">Welcome, @User.Identity.Name</h1>
     </div>
     <div class="mt-4 container">
         <h3 class="text-center">Browse Your Virual Library :)</h3>
@@ -67,4 +66,8 @@
         </div>
 
     </div>
-</main>
+}
+else
+{
+
+}

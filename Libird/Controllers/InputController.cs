@@ -1,10 +1,14 @@
 ﻿using Libird.Interface;
 using Libird.Models.Domain;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Libird.Controllers
 {
+    [AllowAnonymous]
     public class InputController : Controller
     {
         private readonly ICreateNewAccount _createNewAccountService;
@@ -17,35 +21,53 @@ namespace Libird.Controllers
         }
 
         [HttpGet]
-        public IActionResult SingUp()
+        public IActionResult SignUp()
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult SingIn()
+        public IActionResult SignIn(string message)
         {
+            ViewBag.MessageError = message;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SingUp(User user , Account account)
+        public async Task<IActionResult> SignUp(User user , Account account)
         {
             await _createNewAccountService.CreateNewAccountAsync(user, account);
-            return RedirectToAction("Index", "Home", new { UserName = account.UserName });
+            await Authentication(account);
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SingIn(Account account)
+        public async Task<IActionResult> SignIn(Account account)
         {
             var hasAny = await _loginAccountService.LoginAccountAsync(account);
             if (!hasAny)
             {
-                return BadRequest("User Name or Password not exist!!");
+                return RedirectToAction(nameof(SignIn), new { message = "Username or password is incorret!!" });
             }
-            return RedirectToAction("Index", "Home", new { UserName = account.UserName });
+            await Authentication(account);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction(nameof(SignIn));
+        }
+
+        private async Task Authentication(Account account)
+        {
+            ClaimsIdentity identity = new ClaimsIdentity("CookieAuth");
+            identity.AddClaim(new Claim(ClaimTypes.Name, $"{account.UserName}"));
+            ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
+            await HttpContext.SignInAsync(claimsPrincipal);
         }
     }
 }

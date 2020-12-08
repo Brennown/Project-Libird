@@ -1,0 +1,29 @@
+﻿@model Libird.Models.Domain.Account
+<div class="container">
+    @if (ViewBag.MessageError != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.MessageError
+        </div>
+    }
+</div>
+<div class="container">
+    <h2 class="text-center">Welcome to Libird</h2>
+</div>
+<div class="card login-screen">
+    <div class="card-body">
+        <form asp-action="SignIn" method="post">
+            <div class="form-group">
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" type="text" class="form-control" placeholder="User Name">
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Sing In</button>
+        </form>
+        <p class="text-center mt-3">Not have an account yet ??<a asp-action="SignUp">SignUp</a></p>
+    </div>
+</div>
+
