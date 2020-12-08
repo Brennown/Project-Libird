@@ -1,4 +1,5 @@
 ﻿using Libird.Data.Context;
+using Libird.Data.Cryptography;
 using Libird.Data.Generic;
 using Libird.Interface;
 using Libird.Models.Domain;
@@ -16,7 +17,8 @@ namespace Libird.Data.Services
        
         public async Task<bool> LoginAccountAsync(Account account)
         {
-            var hasAny = await _context.Accounts.AnyAsync(x => x.UserName == account.UserName && x.Password == account.Password);
+            var criptoPassword = CryptoPassword.HashMD5(account.Password);
+            var hasAny = await _context.Accounts.AnyAsync(x => x.UserName == account.UserName && x.Password == criptoPassword);
             if (!hasAny)
             {
                 return false;

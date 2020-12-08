@@ -5,6 +5,6 @@ namespace Libird.Interface
 {
     public interface ICreateNewAccount
     {
-        Task<string> CreateNewAccountAsync(User user, Account account);
+        Task CreateNewAccountAsync(User user, Account account);
     }
 }

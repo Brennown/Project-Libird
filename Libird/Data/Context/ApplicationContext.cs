@@ -23,7 +23,7 @@ namespace Libird.Data.Context
                 p.ToTable("Accounts");
                 p.HasKey(p => p.AccountId);
                 p.Property(p => p.UserName).HasColumnType("VARCHAR(30)").IsRequired();
-                p.Property(p => p.Password).HasColumnType("VARCHAR(30)").IsRequired();
+                p.Property(p => p.Password).HasColumnType("VARCHAR(255)").IsRequired();
                 p.Property(p => p.UserId).HasColumnName("Fk_UserId").IsRequired();
             });
 

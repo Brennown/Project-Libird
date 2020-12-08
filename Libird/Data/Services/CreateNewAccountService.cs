@@ -1,4 +1,5 @@
 ﻿using Libird.Data.Context;
+using Libird.Data.Cryptography;
 using Libird.Data.Generic;
 using Libird.Interface;
 using Libird.Models.Domain;
@@ -14,7 +15,7 @@ namespace Libird.Data.Services
         }
 
 
-        public async Task<string> CreateNewAccountAsync(User user, Account account)
+        public async Task CreateNewAccountAsync(User user, Account account)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -23,10 +24,15 @@ namespace Libird.Data.Services
 
             account.UserId = userId.UserId;
 
+            account.Password = Cryptography(account.Password);
+
             _context.Accounts.Add(account);
             await _context.SaveChangesAsync();
+        }
 
-            return "Account Created with success";
+        private string Cryptography(string password)
+        {
+            return CryptoPassword.HashMD5(password);
         }
     }
 }

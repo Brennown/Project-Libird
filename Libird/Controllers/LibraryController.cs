@@ -1,10 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Libird.Interface;
 using Libird.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Libird.Controllers
 {
+    [Authorize]
     public class LibraryController : Controller
     {
         private readonly IBook _bookService;

@@ -9,6 +9,8 @@
     <Compile Remove="Data\Migrations\20201120215420_SecoundMigration.Designer.cs" />
     <Compile Remove="Data\Migrations\20201120221606_SecondMigration.cs" />
     <Compile Remove="Data\Migrations\20201120221606_SecondMigration.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201208165507_FouthMigration.cs" />
+    <Compile Remove="Data\Migrations\20201208165507_FouthMigration.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

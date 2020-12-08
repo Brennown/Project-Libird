@@ -15,8 +15,6 @@ namespace Libird.Data.Services
         {
         }
 
-
-
         public async Task AddBook(int authorId, Book book)
         {
             book.AuthorId = authorId;
@@ -46,8 +44,6 @@ namespace Libird.Data.Services
             var bookId = Book.BookId;
             return bookId;
         }
-
-
 
         public async Task AddNewBook(int accountId, Book book, Author author)
         {
