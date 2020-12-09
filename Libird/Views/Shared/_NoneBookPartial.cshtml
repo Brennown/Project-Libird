@@ -1,0 +1,17 @@
+﻿<div class="container">
+    <div style="margin-top: 100px;">
+        <div class="alert alert-primary" role="alert">
+            <h4 class="alert-heading">Hello @User.Identity.Name :)</h4>
+            <p>
+                You don't have any books yet
+            </p>
+            <hr>
+            <p class="mb-0">Add a new book now :)</p>
+        </div>
+    </div>
+    <div class="mt-5">
+        <p class="text-center">
+            <a asp-controller="AddBook" asp-action="Index" class="btn btn-primary">Add Now</a>
+        </p>
+    </div>
+</div>

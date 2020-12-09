@@ -1,12 +1,11 @@
 ﻿.icons-link {
-    font-size: 25px;
-    color: #808080;
+    font-size: 27px;
     text-align: center;
-    letter-spacing: 50px;
+    margin-left: 40px;
 }
 
     .icons-link:hover {
-        color: #0E8EF1;
+        fill: #0E8EF1;
     }
 
 .logo {
