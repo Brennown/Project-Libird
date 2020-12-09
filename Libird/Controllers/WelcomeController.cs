@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Libird.Controllers
 {
-    [Authorize]
-    public class HomeController : Controller
+    [AllowAnonymous]
+    public class WelcomeController : Controller
     {
         public IActionResult Index()
         {
