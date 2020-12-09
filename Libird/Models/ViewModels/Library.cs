@@ -7,5 +7,6 @@ namespace Libird.Models.ViewModels
     {
         public Book Book { get; set; }
         public ICollection<Book> Books { get; set; }
+        public int Code { get; set; }
     }
 }

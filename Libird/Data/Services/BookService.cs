@@ -47,13 +47,31 @@ namespace Libird.Data.Services
 
         public async Task AddNewBook(int accountId, Book book, Author author)
         {
-            await AddAuthor(author);
-            var authorId = await GetAuthorIdByName(author);
+            var anyAuthor = await hasAnyAuthor(author);
 
-            await AddBook(authorId, book);
-            var bookId = await GetBookIdByIsbn(book.Isbn);
+            if (anyAuthor)
+            {
+                author.AuthorId = await GetAuthorIdByName(author);
+            }
+            else
+            {
+                await AddAuthor(author);
+                author.AuthorId = await GetAuthorIdByName(author);
+            }
+            
+            var anyBook = await hasAnyBook(book.Isbn);
 
-            await AddBookAccount(accountId, bookId);
+            if (anyBook)
+            {
+                book.BookId = await GetBookIdByIsbn(book.Isbn);
+            }
+            else
+            {
+                await AddBook(author.AuthorId, book);
+                book.BookId = await GetBookIdByIsbn(book.Isbn);
+            }
+           
+            await AddBookAccount(accountId, book.BookId);
         }
         public async Task<List<Book>> GetAllBookByAccountId(int accountId)
         {
@@ -76,6 +94,15 @@ namespace Libird.Data.Services
         public async Task<Book> GetBookById(int bookId)
         {
             return await _context.Books.Include(x => x.Author).FirstOrDefaultAsync(x => x.BookId == bookId);
+        }
+
+        private async Task<bool> hasAnyBook(string isbn)
+        {
+            return await _context.Books.AnyAsync(x => x.Isbn == isbn);
+        }
+        private async Task<bool> hasAnyAuthor(Author author)
+        {
+            return await _context.Authors.AnyAsync(x => x.Name == author.Name && x.LastName == author.LastName);
         }
     }
 }

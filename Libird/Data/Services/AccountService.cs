@@ -4,7 +4,6 @@ using Libird.Interface;
 using Libird.Models.Domain;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace Libird.Data.Services
 {
