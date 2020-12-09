@@ -17,6 +17,8 @@ namespace Libird.Controllers
             _bookService = bookService;
             _accountervice = accountService;
         }
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var userName = User.Identity.Name;
@@ -29,6 +31,22 @@ namespace Libird.Controllers
             };
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            var Book = await _bookService.GetBookById(id.Value);
+            return View(Book);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int bookid)
+        {
+            var accountId = await _accountervice.SearchAccountIdByUserName(User.Identity.Name);
+            await _bookService.DeleteBook(accountId, bookid);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

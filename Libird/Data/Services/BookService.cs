@@ -65,6 +65,17 @@ namespace Libird.Data.Services
                 .Where(x => x.BookAccounts.Any(x => x.AccountId == accountId))
                 .ToListAsync();
         }
-       
+
+        public async Task DeleteBook(int accountId, int Bookid)
+        {
+            var bookAccount = await _context.BookAccounts.FirstOrDefaultAsync(x => x.AccountId == accountId && x.BookId == Bookid);
+            _context.Remove(bookAccount);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Book> GetBookById(int bookId)
+        {
+            return await _context.Books.Include(x => x.Author).FirstOrDefaultAsync(x => x.BookId == bookId);
+        }
     }
 }

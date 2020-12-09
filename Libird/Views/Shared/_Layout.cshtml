@@ -88,9 +88,8 @@
                 }
                 else
                 {
-                    <a asp-action="SignIn" asp-controller="Input" class="btn btn-primary login-link">Login</a>
-                    <a asp-action="SignUp" asp-controller="Input" class="btn btn-success">Create Your Account</a>
-                }
+                    <partial name="_LoginPartial" />
+                } 
             </div>
         </nav>
     </header>

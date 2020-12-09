@@ -1,0 +1,26 @@
+﻿@model Libird.Models.Domain.Book
+<div class="container">
+    <div style="margin: 100px;">
+        <div>
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">@Model.Title</h4>
+                <p>
+                    Are you sure you want to delete this book?
+                </p>
+                <hr>
+                <p class="mb-0"><span><b>ISBN: </b></span>@Model.Isbn</p>
+                <p class="mb-0"><span><b>Author: </b></span>@Model.Author.Name @Model.Author.LastName</p>
+            </div>
+        </div>
+        <div>
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="BookId" />
+                <div class="form-group text-center">
+                    <a asp-action="Index" class="btn btn-primary">Back to Library</a>
+                    <button type="submit" value="Delete" class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
