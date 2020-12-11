@@ -9,25 +9,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Libird.Data.Services
 {
-    public class BookService : GenericContext, IBook, IAuthor, IBookAccount
+    public class BookService : GenericContext, IBook
     {
         public BookService(ApplicationContext context) : base(context)
         {
         }
 
-        public async Task AddBook(int authorId, Book book)
+        private async Task AddBook(int authorId, Book book)
         {
             book.AuthorId = authorId;
             _context.Books.Add(book);
             await _context.SaveChangesAsync();
         }
-        public async Task AddBookAccount(int accountId, int bookId)
+        private async Task AddBookAccount(int accountId, int bookId)
         {
             var bookAccount = new BookAccount { AccountId = accountId, BookId = bookId };
             _context.BookAccounts.Add(bookAccount);
             await _context.SaveChangesAsync();
         }
-        public async Task AddAuthor(Author author)
+        private async Task AddAuthor(Author author)
         {
             _context.Authors.Add(author);
             await _context.SaveChangesAsync();
@@ -45,7 +45,7 @@ namespace Libird.Data.Services
             return bookId;
         }
 
-        public async Task AddNewBook(int accountId, Book book, Author author)
+        public async Task InsertBook(int accountId, Book book, Author author)
         {
             var anyAuthor = await hasAnyAuthor(author);
 
@@ -82,6 +82,12 @@ namespace Libird.Data.Services
                 .Include(x => x.BookAccounts)
                 .Where(x => x.BookAccounts.Any(x => x.AccountId == accountId))
                 .ToListAsync();
+        }
+
+        public async Task UpdateBook(Book book)
+        {
+            _context.Books.Update(book);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteBook(int accountId, int Bookid)
