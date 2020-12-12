@@ -3,10 +3,11 @@ using System.Collections.Generic;
 
 namespace Libird.Models.ViewModels
 {
-    public class Library
+    public class LibraryViewModel
     {
         public Book Book { get; set; }
-        public ICollection<Book> Books { get; set; }
+        public List<Book> Books { get; set; }
         public int Code { get; set; }
+        public int CountBook { get; set; }
     }
 }

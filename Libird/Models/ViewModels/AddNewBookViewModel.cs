@@ -2,7 +2,7 @@
 
 namespace Libird.Models.ViewModels
 {
-    public class AddNewBook
+    public class AddNewBookViewModel
     {
         public Book Book { get; set; }
         public int AccountId { get; set; }

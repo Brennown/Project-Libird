@@ -26,7 +26,7 @@ namespace Libird.Controllers
             var accountId = await _accountService.SearchAccountIdByUserName(userName);
             var listBook = await _bookService.GetAllBookByAccountId(accountId);
 
-            var viewModel = new Library 
+            var viewModel = new LibraryViewModel 
             { 
                 Books = listBook
             };
@@ -39,7 +39,7 @@ namespace Libird.Controllers
         {
             var userName = User.Identity.Name;
             var accountId = await _accountService.SearchAccountIdByUserName(userName);
-            var viewModel = new AddNewBook { AccountId = accountId };
+            var viewModel = new AddNewBookViewModel { AccountId = accountId };
             return View(viewModel);
         }
 
